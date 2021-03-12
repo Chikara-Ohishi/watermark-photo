@@ -17,11 +17,10 @@ def open_file():
     image = Image.open(open(file_name, 'rb'))
     image = resize_image(image)
 
-    global canvas_img
-    canvas_img = ImageTk.PhotoImage(image)
-    global canvas
+    # global canvas
+    canvas.photo = ImageTk.PhotoImage(image)
     canvas.config(width=image.width, height=image.height)
-    canvas.itemconfig(image_on_canvas, image=canvas_img)
+    canvas.itemconfig(image_on_canvas, image=canvas.photo)
 
 def resize_image(image):
     img_max = max(image.width, image.height)
@@ -39,9 +38,9 @@ canvas.grid(column=0, row=1, columnspan=2)
 
 image = Image.open(open('DSC00044.JPG', 'rb'))
 image = resize_image(image)
-canvas_img = ImageTk.PhotoImage(image)
+canvas.photo = ImageTk.PhotoImage(image)
 canvas.config(width=image.width, height=image.height)
-image_on_canvas = canvas.create_image(canvas_img.width()/2, canvas_img.height()/2, image=canvas_img)
+image_on_canvas = canvas.create_image(0,0, image=canvas.photo, anchor="nw")
 
 
 file_button = Button(text="file", highlightbackground=BUTTON_COLOR, fg=TEXT_COLOR, font=(FONT_NAME, 20),
