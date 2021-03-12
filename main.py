@@ -31,6 +31,10 @@ def change_canvas_image(image):
     canvas.itemconfig(image_on_canvas, image=canvas.photo)
     canvas.coords(text_on_canvas, image.width / 2, image.height / 2)
 
+def save_image():
+    canvas.postscript(file="canvas.eps")
+    # image = Image.open("canvas.eps")
+    # image.show()
 
 # ---------- UI SETUP ----------
 window = Tk()
@@ -53,7 +57,7 @@ open_button = Button(button_frame, text="Open File", font=(FONT_NAME, 20),
                      highlightthickness=0, command=open_file)
 open_button.config(padx=5)
 save_button = Button(button_frame, text="Save File", font=(FONT_NAME, 20),
-                     highlightthickness=0, command=open_file)
+                     highlightthickness=0, command=save_image)
 save_button.config(padx=5)
 
 button_frame.grid(column=0, row=0, sticky=W)
